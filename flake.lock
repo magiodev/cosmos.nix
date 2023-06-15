@@ -681,6 +681,40 @@
         "type": "github"
       }
     },
+    "quasar-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1685029331,
+        "narHash": "sha256-FTHWBvYzQG71LPB/IERWM6lX7u04RLajF6e9g3FAqpA=",
+        "owner": "quasar-finance",
+        "repo": "quasar-preview",
+        "rev": "dd90cdbbb772d55396f781fe70578a832eb83767",
+        "type": "github"
+      },
+      "original": {
+        "owner": "quasar-finance",
+        "ref": "v0.1.1",
+        "repo": "quasar-preview",
+        "type": "github"
+      }
+    },
+    "quicksilver-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1685447310,
+        "narHash": "sha256-1oyXZx+IHDlMbonzdW8I35jmROP6lAL+7VJU+Ibbjl0=",
+        "owner": "ingenuity-build",
+        "repo": "quicksilver",
+        "rev": "59f536ae51b2b63446ca43a5610442ba19d123c4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ingenuity-build",
+        "ref": "v1.2.13",
+        "repo": "quicksilver",
+        "type": "github"
+      }
+    },
     "regen-src": {
       "flake": false,
       "locked": {
@@ -752,6 +786,8 @@
         "osmosis7-src": "osmosis7-src",
         "osmosis8-src": "osmosis8-src",
         "pre-commit-hooks": "pre-commit-hooks",
+        "quasar-src": "quasar-src",
+        "quicksilver-src": "quicksilver-src",
         "regen-src": "regen-src",
         "relayer-src": "relayer-src",
         "rust-overlay": "rust-overlay",
@@ -769,7 +805,9 @@
         "wasmd_next-src": "wasmd_next-src",
         "wasmvm_0_16_3-src": "wasmvm_0_16_3-src",
         "wasmvm_1-src": "wasmvm_1-src",
+        "wasmvm_1_1_0-src": "wasmvm_1_1_0-src",
         "wasmvm_1_1_1-src": "wasmvm_1_1_1-src",
+        "wasmvm_1_2_0-src": "wasmvm_1_2_0-src",
         "wasmvm_1_2_3-src": "wasmvm_1_2_3-src",
         "wasmvm_1_beta7-src": "wasmvm_1_beta7-src"
       }
@@ -1027,6 +1065,23 @@
         "type": "github"
       }
     },
+    "wasmvm_1_1_0-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1662478805,
+        "narHash": "sha256-Cwz610MJ4nWujevkQdory0nJJQov+jqXxOqRPEsBdcw=",
+        "owner": "CosmWasm",
+        "repo": "wasmvm",
+        "rev": "d18217560af2f24f55d15f3bbe2a612a65627723",
+        "type": "github"
+      },
+      "original": {
+        "owner": "CosmWasm",
+        "ref": "v1.1.0",
+        "repo": "wasmvm",
+        "type": "github"
+      }
+    },
     "wasmvm_1_1_1-src": {
       "flake": false,
       "locked": {
@@ -1040,6 +1095,23 @@
       "original": {
         "owner": "CosmWasm",
         "ref": "v1.1.1",
+        "repo": "wasmvm",
+        "type": "github"
+      }
+    },
+    "wasmvm_1_2_0-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1674572027,
+        "narHash": "sha256-uvZD9zq4GVeqBKwphf+noi3F//aXfRR7dI2KhThL+t0=",
+        "owner": "CosmWasm",
+        "repo": "wasmvm",
+        "rev": "825dceaacd28f72bb6cf622a164991c5dade125c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "CosmWasm",
+        "ref": "v1.2.0",
         "repo": "wasmvm",
         "type": "github"
       }

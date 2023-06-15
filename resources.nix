@@ -357,6 +357,32 @@
         buildInputs = [libwasmvm_1_2_3];
       };
 
+      quasar = utilities.mkCosmosGoApp {
+        name = "quasar";
+        version = "v0.1.1";
+        src = inputs.quasar-src;
+        vendorSha256 = "sha256-ODP4ZBFpLWLT7FWssJG0SFUy5jRzl+bGaYEE87eJLuM=";
+        engine = "tendermint/tendermint";
+        preFixup = ''
+          ${utilities.wasmdPreFixupPhase libwasmvm_1_2_0 "quasarnoded"}
+        '';
+        buildInputs = [libwasmvm_1_2_0];
+        proxyVendor = true;
+      };
+
+      quicksilver = utilities.mkCosmosGoApp {
+        name = "quicksilver";
+        version = "v1.2.13";
+        src = inputs.quicksilver-src;
+        vendorSha256 = "sha256-DrDkTAlju+CoLdoEkdcFpV+iYVTej+Xw68m5cT3ghiQ=";
+        engine = "tendermint/tendermint";
+        preFixup = ''
+          ${utilities.wasmdPreFixupPhase libwasmvm_1_1_0 "quicksilverd"}
+        '';
+        buildInputs = [libwasmvm_1_1_0];
+        proxyVendor = true;
+      };
+
       # Rust resources
       hermes = pkgs.rustPlatform.buildRustPackage {
         pname = "hermes";
@@ -380,6 +406,19 @@
         doCheck = false;
       };
 
+      libwasmvm_1_2_0 = pkgs.rustPlatform.buildRustPackage {
+        pname = "libwasmvm";
+        src = "${inputs.wasmvm_1_2_0-src}/libwasmvm";
+        version = "v1.2.0";
+        nativeBuildInputs = with pkgs; [rust-bin.stable.latest.default];
+        postInstall = ''
+          cp ./bindings.h $out/lib/
+          ln -s $out/lib/libwasmvm.so $out/lib/libwasmvm.${builtins.head (pkgs.lib.strings.splitString "-" system)}.so
+        '';
+        cargoSha256 = "sha256-NPcR+gkdaSWhPfIrWI0BSwf7M4ktj3f/p5i80mu0NFA=";
+        doCheck = false;
+      };
+
       libwasmvm_1_1_1 = pkgs.rustPlatform.buildRustPackage {
         pname = "libwasmvm";
         src = "${inputs.wasmvm_1_1_1-src}/libwasmvm";
@@ -390,6 +429,19 @@
           ln -s $out/lib/libwasmvm.so $out/lib/libwasmvm.${builtins.head (pkgs.lib.strings.splitString "-" system)}.so
         '';
         cargoSha256 = "sha256-97BhqI1FZyDbVrT5hdyEK7VPtpE9lQgWduc/siH6NqE";
+        doCheck = false;
+      };
+
+      libwasmvm_1_1_0 = pkgs.rustPlatform.buildRustPackage {
+        pname = "libwasmvm";
+        src = "${inputs.wasmvm_1_1_0-src}/libwasmvm";
+        version = "v1.1.0";
+        nativeBuildInputs = with pkgs; [rust-bin.stable.latest.default];
+        postInstall = ''
+          cp ./bindings.h $out/lib/
+          ln -s $out/lib/libwasmvm.so $out/lib/libwasmvm.${builtins.head (pkgs.lib.strings.splitString "-" system)}.so
+        '';
+        cargoSha256 = "sha256-jkruBy5IfD+fhkE/72ceaevVT8ROjjnCwblscC/VtE0=";
         doCheck = false;
       };
 

@@ -103,6 +103,12 @@
     osmosis8-src.flake = false;
     osmosis8-src.url = github:osmosis-labs/osmosis/v8.0.0;
 
+    quasar-src.flake = false;
+    quasar-src.url = github:quasar-finance/quasar-preview/v0.1.1;
+
+    quicksilver-src.flake = false;
+    quicksilver-src.url = github:ingenuity-build/quicksilver/v1.2.13;
+
     terra-src.flake = false;
     terra-src.url = github:terra-money/core/v0.5.17;
 
@@ -139,8 +145,14 @@
     wasmvm_1_2_3-src.flake = false;
     wasmvm_1_2_3-src.url = github:CosmWasm/wasmvm/v1.2.3;
 
+    wasmvm_1_2_0-src.flake = false;
+    wasmvm_1_2_0-src.url = github:CosmWasm/wasmvm/v1.2.0;
+
     wasmvm_1_1_1-src.flake = false;
     wasmvm_1_1_1-src.url = github:CosmWasm/wasmvm/v1.1.1;
+
+    wasmvm_1_1_0-src.flake = false;
+    wasmvm_1_1_0-src.url = github:CosmWasm/wasmvm/v1.1.0;
 
     wasmvm_1_beta7-src.flake = false;
     wasmvm_1_beta7-src.url = github:CosmWasm/wasmvm/v1.0.0-beta7;
