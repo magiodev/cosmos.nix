@@ -370,6 +370,20 @@
         proxyVendor = true;
       };
 
+      quasar-cross = utilities.mkCosmosGoApp {
+        cross = true;
+        name = "quasar";
+        version = "v0.1.1";
+        src = inputs.quasar-src;
+        vendorSha256 = "sha256-ODP4ZBFpLWLT7FWssJG0SFUy5jRzl+bGaYEE87eJLuM=";
+        engine = "tendermint/tendermint";
+        preFixup = ''
+          ${utilities.wasmdPreFixupPhase libwasmvm_1_2_0 "quasarnoded"}
+        '';
+        buildInputs = [libwasmvm_1_2_0];
+        proxyVendor = true;
+      };
+
       quicksilver = utilities.mkCosmosGoApp {
         name = "quicksilver";
         version = "v1.2.13";
@@ -519,7 +533,7 @@
         name = "quasar";
         tag = "latest";
         maxLayers = 20;
-        contents = [ (pkgs.buildEnv { name = "quasar-env"; paths = [ quasar ]; }) ];
+        contents = [ (pkgs.buildEnv { name = "quasar-env"; paths = [ (if pkgs.stdenv.isDarwin then quasar-cross else quasar) ]; }) ];
         config = {
           Cmd = [ "/bin/quasarnoded" ];
           WorkingDir = "/var/quasar";

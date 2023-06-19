@@ -11,6 +11,7 @@
     additionalLdFlags ? "",
     appName ? null,
     preCheck ? null,
+    cross ? false,
     ...
   }: let
     buildGoModuleArgs =
@@ -44,23 +45,43 @@
       then "${name}d"
       else appName;
   in
-    pkgs.buildGo119Module ({
-        inherit version src vendorSha256;
-        pname = name;
-        preCheck =
-          if preCheck == null
-          then ''export HOME="$(mktemp -d)"''
-          else preCheck;
-        ldflags = ''
-          -X github.com/cosmos/cosmos-sdk/version.Name=${name}
-          -X github.com/cosmos/cosmos-sdk/version.AppName=${ldFlagAppName}
-          -X github.com/cosmos/cosmos-sdk/version.Version=${version}
-          -X github.com/cosmos/cosmos-sdk/version.Commit=${src.rev}
-          -X github.com/${engine}/version.TMCoreSemVer=${dependency-version}
-          ${additionalLdFlags}
-        '';
-      }
-      // buildGoModuleArgs);
+    if cross 
+      then
+          pkgs.pkgsCross.gnu64.buildGo119Module ({
+              inherit version src vendorSha256;
+              pname = name;
+              preCheck =
+                if preCheck == null
+                then ''export HOME="$(mktemp -d)"''
+                else preCheck;
+              ldflags = ''
+                -X github.com/cosmos/cosmos-sdk/version.Name=${name}
+                -X github.com/cosmos/cosmos-sdk/version.AppName=${ldFlagAppName}
+                -X github.com/cosmos/cosmos-sdk/version.Version=${version}
+                -X github.com/cosmos/cosmos-sdk/version.Commit=${src.rev}
+                -X github.com/${engine}/version.TMCoreSemVer=${dependency-version}
+                ${additionalLdFlags}
+              '';
+            }
+            // buildGoModuleArgs)
+      else 
+          pkgs.buildGo119Module ({
+              inherit version src vendorSha256;
+              pname = name;
+              preCheck =
+                if preCheck == null
+                then ''export HOME="$(mktemp -d)"''
+                else preCheck;
+              ldflags = ''
+                -X github.com/cosmos/cosmos-sdk/version.Name=${name}
+                -X github.com/cosmos/cosmos-sdk/version.AppName=${ldFlagAppName}
+                -X github.com/cosmos/cosmos-sdk/version.Version=${version}
+                -X github.com/cosmos/cosmos-sdk/version.Commit=${src.rev}
+                -X github.com/${engine}/version.TMCoreSemVer=${dependency-version}
+                ${additionalLdFlags}
+              '';
+            }
+            // buildGoModuleArgs);
 in {
   mkCosmosGoApp = buildApp;
 
