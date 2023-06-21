@@ -85,8 +85,12 @@
 in {
   mkCosmosGoApp = buildApp;
 
-  wasmdPreFixupPhase = libwasmvm: binName:
-    if pkgs.stdenv.hostPlatform.isLinux
+  wasmdPreFixupPhase = {
+    libwasmvm,
+    binName,
+    cross ? false,
+  }:
+    if pkgs.stdenv.hostPlatform.isLinux || cross
     then ''
       old_rpath=$(${pkgs.patchelf}/bin/patchelf --print-rpath $out/bin/${binName})
       new_rpath=$(echo "$old_rpath" | cut -d ":" -f 1 --complement)
@@ -94,7 +98,7 @@ in {
     ''
     else if pkgs.stdenv.hostPlatform.isDarwin
     then ''
-      ${pkgs.darwin.xcode}/bin/install_name_tool -add_rpath "${libwasmvm}/lib" $out/bin/${binName}
+      ${pkgs.stdenv.cc.targetPrefix}install_name_tool -add_rpath "${libwasmvm}/lib" $out/bin/${binName}
     ''
     else null;
 }
