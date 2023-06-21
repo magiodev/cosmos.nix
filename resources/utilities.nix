@@ -94,7 +94,7 @@ in {
     ''
     else if pkgs.stdenv.hostPlatform.isDarwin
     then ''
-      install_name_tool -add_rpath "${libwasmvm}/lib" $out/bin/${binName}
+      ${pkgs.darwin.xcode}/bin/install_name_tool -add_rpath "${libwasmvm}/lib" $out/bin/${binName}
     ''
     else null;
 }
