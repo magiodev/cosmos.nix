@@ -533,11 +533,22 @@
         name = "quasar";
         tag = "latest";
         maxLayers = 20;
-        contents = [ (pkgs.buildEnv { name = "quasar-env"; paths = [ (if pkgs.stdenv.isDarwin then quasar-cross else quasar) ]; }) ];
+        contents = [
+          (pkgs.buildEnv {
+            name = "quasar-env";
+            paths = [
+              (
+                if pkgs.stdenv.isDarwin
+                then quasar-cross
+                else quasar
+              )
+            ];
+          })
+        ];
         config = {
-          Cmd = [ "/bin/quasarnoded" ];
+          Cmd = ["/bin/quasarnoded"];
           WorkingDir = "/var/quasar";
-          Volumes = { "/var/quasar" = {}; };
+          Volumes = {"/var/quasar" = {};};
           ExposedPorts = {
             "26656/tcp" = {};
             "26657/tcp" = {};
@@ -550,11 +561,16 @@
         name = "osmosis";
         tag = "latest";
         maxLayers = 20;
-        contents = [ (pkgs.buildEnv { name = "osmosis-env"; paths = [ osmosis ]; }) ];
+        contents = [
+          (pkgs.buildEnv {
+            name = "osmosis-env";
+            paths = [osmosis];
+          })
+        ];
         config = {
-          Cmd = [ "/bin/osmosisd" ];
+          Cmd = ["/bin/osmosisd"];
           WorkingDir = "/var/osmosis";
-          Volumes = { "/var/osmosis" = {}; };
+          Volumes = {"/var/osmosis" = {};};
           ExposedPorts = {
             "26656/tcp" = {};
             "26657/tcp" = {};
@@ -567,11 +583,16 @@
         name = "quicksilver";
         tag = "latest";
         maxLayers = 20;
-        contents = [ (pkgs.buildEnv { name = "quicksilver-env"; paths = [ quicksilver ]; }) ];
+        contents = [
+          (pkgs.buildEnv {
+            name = "quicksilver-env";
+            paths = [quicksilver];
+          })
+        ];
         config = {
-          Cmd = [ "/bin/quicksilverd" ];
+          Cmd = ["/bin/quicksilverd"];
           WorkingDir = "/var/quicksilver";
-          Volumes = { "/var/quicksilver" = {}; };
+          Volumes = {"/var/quicksilver" = {};};
           ExposedPorts = {
             "26656/tcp" = {};
             "26657/tcp" = {};
@@ -584,11 +605,16 @@
         name = "relayer";
         tag = "latest";
         maxLayers = 20;
-        contents = [ (pkgs.buildEnv { name = "relayer-env"; paths = [ relayer ]; }) ];
+        contents = [
+          (pkgs.buildEnv {
+            name = "relayer-env";
+            paths = [relayer];
+          })
+        ];
         config = {
-          Cmd = [ "/bin/relayer" ];
+          Cmd = ["/bin/relayer"];
           WorkingDir = "/var/relayer";
-          Volumes = { "/var/relayer" = {}; };
+          Volumes = {"/var/relayer" = {};};
           ExposedPorts = {
             "26656/tcp" = {};
             "26657/tcp" = {};
