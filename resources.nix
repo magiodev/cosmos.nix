@@ -105,9 +105,18 @@
         tags = ["netgo"];
         engine = "tendermint/tendermint";
         preFixup = ''
-          ${utilities.wasmdPreFixupPhase libwasmvm_1_1_1 "osmosisd"}
-          ${utilities.wasmdPreFixupPhase libwasmvm_1_1_1 "chain"}
-          ${utilities.wasmdPreFixupPhase libwasmvm_1_1_1 "node"}
+          ${utilities.wasmdPreFixupPhase {
+            libwasmvm = libwasmvm_1_1_1;
+            binName = "osmosisd";
+          }}
+          ${utilities.wasmdPreFixupPhase {
+            libwasmvm = libwasmvm_1_1_1;
+            binName = "chain";
+          }}
+          ${utilities.wasmdPreFixupPhase {
+            libwasmvm = libwasmvm_1_1_1;
+            binName = "node";
+          }}
         '';
         buildInputs = [libwasmvm_1_1_1];
         proxyVendor = true;
@@ -133,7 +142,10 @@
         vendorSha256 = "sha256-sdj59aZJBF4kpolHnYOHHO4zs7vKFu0i1xGKZFEiOyQ=";
         tags = ["netgo"];
         engine = "tendermint/tendermint";
-        preFixup = utilities.wasmdPreFixupPhase libwasmvm_1 "osmosisd";
+        preFixup = utilities.wasmdPreFixupPhase {
+          libwasmvm = libwasmvm_1;
+          binName = "osmosisd";
+        };
         buildInputs = [libwasmvm_1];
 
         # Test has to be skipped as end-to-end testing requires network access
@@ -148,7 +160,10 @@
         vendorSha256 = "sha256-sdj59aZJBF4kpolHnYOHHO4zs7vKFu0i1xGKZFEiOyQ=";
         tags = ["netgo"];
         engine = "tendermint/tendermint";
-        preFixup = utilities.wasmdPreFixupPhase libwasmvm_1beta7 "osmosisd";
+        preFixup = utilities.wasmdPreFixupPhase {
+          libwasmvm = libwasmvm_1beta7;
+          binName = "osmosisd";
+        };
         dontStrip = true;
         buildInputs = [libwasmvm_1beta7];
 
@@ -164,9 +179,18 @@
         tags = ["netgo"];
         engine = "tendermint/tendermint";
         preFixup = ''
-          ${utilities.wasmdPreFixupPhase libwasmvm_1_1_1 "junod"}
-          ${utilities.wasmdPreFixupPhase libwasmvm_1_1_1 "chain"}
-          ${utilities.wasmdPreFixupPhase libwasmvm_1_1_1 "node"}
+          ${utilities.wasmdPreFixupPhase {
+            libwasmvm = libwasmvm_1_1_1;
+            binName = "junod";
+          }}
+          ${utilities.wasmdPreFixupPhase {
+            libwasmvm = libwasmvm_1_1_1;
+            binName = "chain";
+          }}
+          ${utilities.wasmdPreFixupPhase {
+            libwasmvm = libwasmvm_1_1_1;
+            binName = "node";
+          }}
         '';
         dontStrip = true;
         buildInputs = [libwasmvm_1_1_1];
@@ -179,7 +203,10 @@
         vendorSha256 = "sha256-2KmSRuSMzg9qFVncrxk+S5hqx8MMpRdo12/HZEaK5Aw=";
         tags = ["netgo"];
         engine = "tendermint/tendermint";
-        preFixup = utilities.wasmdPreFixupPhase libwasmvm_0_16_3 "terrad";
+        preFixup = utilities.wasmdPreFixupPhase {
+          libwasmvm = libwasmvm_0_16_3;
+          binName = "terrad";
+        };
         dontStrip = true;
         buildInputs = [libwasmvm_0_16_3];
       };
@@ -259,7 +286,10 @@
         src = inputs.stargaze-src;
         buildInputs = [libwasmvm_1beta7];
         vendorSha256 = "sha256-IJwyjto86gnWyeux1AS+aPZONhpyB7+MSQcCRs3LHzw=";
-        preFixup = utilities.wasmdPreFixupPhase libwasmvm_1beta7 "starsd";
+        preFixup = utilities.wasmdPreFixupPhase {
+          libwasmvm = libwasmvm_1beta7;
+          binName = "starsd";
+        };
         tags = ["netgo"];
         engine = "tendermint/tendermint";
       };
@@ -295,7 +325,10 @@
         vendorSha256 = "sha256-8Uo/3SdXwblt87WU78gjpRPcHy+ZotmhF6xTyb3Jxe0";
         tags = ["netgo"];
         engine = "tendermint/tendermint";
-        preFixup = utilities.wasmdPreFixupPhase libwasmvm_1_1_1 "wasmd";
+        preFixup = utilities.wasmdPreFixupPhase {
+          libwasmvm = libwasmvm_1_1_1;
+          binName = "wasmd";
+        };
         dontStrip = true;
         buildInputs = [libwasmvm_1_1_1];
       };
@@ -307,7 +340,10 @@
         vendorSha256 = "sha256-FWpclJuuIkbcoXxRTeZwDR0wZP2eHkPKsu7xme5vLPg=";
         tags = ["netgo"];
         engine = "cometbft/cometbft";
-        preFixup = utilities.wasmdPreFixupPhase libwasmvm_1_2_3 "wasmd";
+        preFixup = utilities.wasmdPreFixupPhase {
+          libwasmvm = libwasmvm_1_2_3;
+          binName = "wasmd";
+        };
         dontStrip = true;
         buildInputs = [libwasmvm_1_2_3];
       };
@@ -340,7 +376,10 @@
         vendorSha256 = "sha256-Z85OpuiB73BHSSuPADvE3tJ5ZstHYik8yghfCHXy3W0=";
         engine = "tendermint/tendermint";
         preFixup = ''
-          ${utilities.wasmdPreFixupPhase libwasmvm_1_2_3 "migalood"}
+          ${utilities.wasmdPreFixupPhase {
+            libwasmvm = libwasmvm_1_2_3;
+            binName = "migalood";
+          }}
         '';
         buildInputs = [libwasmvm_1_2_3];
       };
@@ -352,7 +391,10 @@
         vendorSha256 = "sha256-Q3QEk7qS1ue/HrvwdkGh6iX8BTg+0ssznyWsYtzZ+/4=";
         engine = "tendermint/tendermint";
         preFixup = ''
-          ${utilities.wasmdPreFixupPhase libwasmvm_1_2_3 "neutrond"}
+          ${utilities.wasmdPreFixupPhase {
+            libwasmvm = libwasmvm_1_2_3;
+            binName = "neutrond";
+          }}
         '';
         buildInputs = [libwasmvm_1_2_3];
       };
@@ -364,7 +406,28 @@
         vendorSha256 = "sha256-ODP4ZBFpLWLT7FWssJG0SFUy5jRzl+bGaYEE87eJLuM=";
         engine = "tendermint/tendermint";
         preFixup = ''
-          ${utilities.wasmdPreFixupPhase libwasmvm_1_2_0 "quasarnoded"}
+          ${utilities.wasmdPreFixupPhase {
+            libwasmvm = libwasmvm_1_2_0;
+            binName = "quasarnoded";
+          }}
+        '';
+        buildInputs = [libwasmvm_1_2_0];
+        proxyVendor = true;
+      };
+
+      quasar-cross = utilities.mkCosmosGoApp {
+        cross = true;
+        name = "quasar";
+        version = "v0.1.1";
+        src = inputs.quasar-src;
+        vendorSha256 = "sha256-ODP4ZBFpLWLT7FWssJG0SFUy5jRzl+bGaYEE87eJLuM=";
+        engine = "tendermint/tendermint";
+        preFixup = ''
+          ${utilities.wasmdPreFixupPhase {
+            libwasmvm = libwasmvm_1_2_0;
+            binName = "quasarnoded";
+            cross = true;
+          }}
         '';
         buildInputs = [libwasmvm_1_2_0];
         proxyVendor = true;
@@ -377,7 +440,10 @@
         vendorSha256 = "sha256-DrDkTAlju+CoLdoEkdcFpV+iYVTej+Xw68m5cT3ghiQ=";
         engine = "tendermint/tendermint";
         preFixup = ''
-          ${utilities.wasmdPreFixupPhase libwasmvm_1_1_0 "quicksilverd"}
+          ${utilities.wasmdPreFixupPhase {
+            libwasmvm = libwasmvm_1_1_0;
+            binName = "quicksilverd";
+          }}
         '';
         buildInputs = [libwasmvm_1_1_0];
         proxyVendor = true;
@@ -519,11 +585,22 @@
         name = "quasar";
         tag = "latest";
         maxLayers = 20;
-        contents = [ (pkgs.buildEnv { name = "quasar-env"; paths = [ quasar ]; }) ];
+        contents = [
+          (pkgs.buildEnv {
+            name = "quasar-env";
+            paths = [
+              (
+                if pkgs.stdenv.isDarwin
+                then quasar-cross
+                else quasar
+              )
+            ];
+          })
+        ];
         config = {
-          Cmd = [ "/bin/quasarnoded" ];
+          Cmd = ["/bin/quasarnoded"];
           WorkingDir = "/var/quasar";
-          Volumes = { "/var/quasar" = {}; };
+          Volumes = {"/var/quasar" = {};};
           ExposedPorts = {
             "26656/tcp" = {};
             "26657/tcp" = {};
@@ -536,11 +613,16 @@
         name = "osmosis";
         tag = "latest";
         maxLayers = 20;
-        contents = [ (pkgs.buildEnv { name = "osmosis-env"; paths = [ osmosis ]; }) ];
+        contents = [
+          (pkgs.buildEnv {
+            name = "osmosis-env";
+            paths = [osmosis];
+          })
+        ];
         config = {
-          Cmd = [ "/bin/osmosisd" ];
+          Cmd = ["/bin/osmosisd"];
           WorkingDir = "/var/osmosis";
-          Volumes = { "/var/osmosis" = {}; };
+          Volumes = {"/var/osmosis" = {};};
           ExposedPorts = {
             "26656/tcp" = {};
             "26657/tcp" = {};
@@ -553,11 +635,16 @@
         name = "quicksilver";
         tag = "latest";
         maxLayers = 20;
-        contents = [ (pkgs.buildEnv { name = "quicksilver-env"; paths = [ quicksilver ]; }) ];
+        contents = [
+          (pkgs.buildEnv {
+            name = "quicksilver-env";
+            paths = [quicksilver];
+          })
+        ];
         config = {
-          Cmd = [ "/bin/quicksilverd" ];
+          Cmd = ["/bin/quicksilverd"];
           WorkingDir = "/var/quicksilver";
-          Volumes = { "/var/quicksilver" = {}; };
+          Volumes = {"/var/quicksilver" = {};};
           ExposedPorts = {
             "26656/tcp" = {};
             "26657/tcp" = {};
@@ -570,11 +657,16 @@
         name = "relayer";
         tag = "latest";
         maxLayers = 20;
-        contents = [ (pkgs.buildEnv { name = "relayer-env"; paths = [ relayer ]; }) ];
+        contents = [
+          (pkgs.buildEnv {
+            name = "relayer-env";
+            paths = [relayer];
+          })
+        ];
         config = {
-          Cmd = [ "/bin/relayer" ];
+          Cmd = ["/bin/relayer"];
           WorkingDir = "/var/relayer";
-          Volumes = { "/var/relayer" = {}; };
+          Volumes = {"/var/relayer" = {};};
           ExposedPorts = {
             "26656/tcp" = {};
             "26657/tcp" = {};
